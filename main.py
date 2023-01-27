@@ -1,10 +1,13 @@
-import theano.tensor as tt
 import numpy as np
 import pandas as pd
+import matplotlib.pyplot as plt
+import theano.tensor as tt
 
 from sklearn.preprocessing import MinMaxScaler, StandardScaler, PowerTransformer
 from sklearn.metrics import mean_absolute_percentage_error, mean_squared_error
-import matplotlib.pyplot as plt
+
+import arviz as az
+import pymc3 as pm
 
 def geometric_adstock(x, theta, alpha,L):
     w = tt.as_tensor_variable([tt.power(alpha,tt.power(i-theta,2)) for i in range(L)])
@@ -13,10 +16,6 @@ def geometric_adstock(x, theta, alpha,L):
 
 def coef_mul(x,b):
     return b * x
-
-
-import arviz as az
-import pymc3 as pm
 
 if __name__ == '__main__':
     
